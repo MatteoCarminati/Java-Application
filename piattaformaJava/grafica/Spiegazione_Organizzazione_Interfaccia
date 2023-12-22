@@ -1,0 +1,26 @@
+L'interfaccia è completamente gestita dalla classe MainFrame che funziona come una sorta di manager generale.
+Questo perchè esiste solo una istanza di JFrame in tutto il package e ogni volta che si vuole cambiare finestra da visualizzare non si apre un nuovo
+JFrame, in quanto tecnica molto sconsigliata quando si lavora con Swing, ma bensì un nuovo JPanel.
+Per gestire quindi tutti i vari JPanel, sono stati inseriti all'interno di un contenitore (@param container) che attraverso un identificativo riesce a
+gestirli singolarmente.
+Il container è controllato da un CardLayout (@param cl) che decide chi mostrare dal container mediante l'identificatore.
+
+Ora per tenere più organizzati tutti i pannelli e non doverli scrivere tutti all'interno del costruttore del MainFrame, si è deciso di creare una
+classe Generale (@class PannelloGenerale) che estendesse JPanel e che contenesse tutte quelle proprietà comuni a tutti i pannelli; poi per ogni
+singolo pannello si è implementata una classe diversa che estendesse la classe PannelloGrande, di modo tale che la visualizzazione di ogni singolo 
+pannello potesse essere più chiara e ben controllabile.
+Quindi dato che per poter passare da un pannello all'altro è necessario utilizzare il JPanel container e il CardLayout che sono variabili presenti in
+una classe diversa da quella di ogni singolo pannello, bisognerà rendere queste due variabili statiche, per poterle poi richiamare all'interno della classe
+del pannello senza dover creare un'istanza della classe MainFrame. 
+In questo modo l'organizzazione e il passaggio da un pannello all'altro è più chiara e gestibile.
+
+La palette utilizzata nella creazione dell'applicativo è la seguente
+	- #EAE7DC background
+	- #D8C3A5
+	- #8E8D8A
+	- #E98074
+	- #E85A4F
+
+Le superclassi non possono avere il metodo associato all'interfaccia dell'ActionListener, in quanto se poi abbiamo dei pannelli che sono loro sottoclassi
+e bisogna usare tale metodo per recuperare quello che i bottoni una volta premuti fanno, andremmo a sovvrascrivere il metodo scritto nella superclasse
+andando quindi a non eseguire mai il metodo della super
